@@ -2,20 +2,37 @@
 
 /* Body styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    font-family: 'Roboto', sans-serif;
+    background-image: url('yellowpaw.jpg');
+    /* Path to your background image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Ensures the background image remains fixed while scrolling */
     margin: 0;
     padding: 20px;
+    color: #333;
+    /* Set font color to black */
 }
 
-/* Header styles */
 h1 {
-    color: #333;
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff9900;
+    background: linear-gradient(to right, #ff9900, #ff4500);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    text-align: center;
+    /* Center text horizontally */
+    margin-bottom: 20px;
 }
 
 /* Form styles */
 form {
-    background-color: #fff;
+    background-color: rgba(213, 236, 4, 0.8);
+    /* Semi-transparent background for better readability */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -30,61 +47,215 @@ label {
 input[type="text"],
 input[type="url"],
 button {
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 10px;
     width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 button {
     background-color: #007bff;
     color: #fff;
-    border: none;
-    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #ff0000;
 }
 
 /* Player styles */
 #players {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     gap: 20px;
 }
 
 .player {
-    flex: 1 1 250px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Semi-transparent background for better readability */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+    animation: slideIn 0.5s ease;
+    /* Animation for the div */
+}
+
+.player:hover {
+    transform: translateY(-5px);
+}
+
+.player img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.player-details {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Semi-transparent background for better readability */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.player:hover .player-details {
+    display: flex;
+}
+
+.player h2,
+.player p {
+    font-family: 'fantasy', sans-serif;
+    /* Fantasy font */
+    color: #ff9900;
+    /* Bright orange color */
+    border: 1px solid #000;
+    /* Black border */
+    padding: 5px;
+    /* Add padding to make the border more visible */
+}
+
+/* Card styles */
+.card {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    color: #333;
+    /* Set text color to black */
+    animation: fadeIn 0.5s ease;
+    /* Animation for the div */
 }
 
-.player h2 {
-    margin-top: 0;
+/* Animation keyframes */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+p {
+    font-family: fantasy;
+    color: #000000;
+    /* Orange color */
+    background-color: #ffa500;
+    /* Solid orange background */
+    border: 2px solid #000000;
+    /* Black border */
+    padding: 10px;
+    /* Add padding for spacing */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Shadow effect */
+}
+
+#players {
+    font-family: fantasy;
+    background-color: #ffa500;
+    /* Solid orange background */
+    border: 2px solid #000000;
+    /* Black border */
+    padding: 20px;
+    /* Add padding for spacing */
+    border-radius: 12px;
+    /* Rounded corners */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    /* Stronger shadow effect */
+}
+#addPlayerForm {
+    background-color: #030200;
+    /* Solid orange background */
+    border: 2px solid #000000;
+    /* Black border */
+    padding: 20px;
+    /* Add padding for spacing */
+    border-radius: 12px;
+    /* Rounded corners */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    /* Stronger shadow effect */
+    animation: borderAnimation 1s infinite alternate;
+    /* Animation on border */
+}
+
+/* Animation for the border */
+@keyframes borderAnimation {
+    0% {
+        border-color: #fcd706;
+    }
+
+    100% {
+        border-color: #ffee00;
+        /* Orange color */
+    }
+}
+
+/* Label styles */
+#addPlayerForm label {
+    color: #ffffff;
+    /* Orange color */
+    font-weight: bold;
+}
+/* Input styles */
+#addPlayerForm input[type="text"],
+#addPlayerForm input[type="url"],
+#addPlayerForm button {
+    padding: 8px;
     margin-bottom: 10px;
+    width: 100%;
+    border: 2px solid #000000;
+    /* Black border */
+    border-radius: 4px;
+    background-color: #ffffff;
+    /* Solid orange background */
+    color: #ff9900;
+    /* Orange color */
 }
 
-.player img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-    object-fit: cover;
-    /* Ensure images maintain aspect ratio and do not overlap */
-}
-
-.player button {
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+/* Button styles */
+#addPlayerForm button {
+    background-color: #000000;
+    /* Black background */
+    color: #ffa500;
+    /* Orange color */
+    font-weight: bold;
     cursor: pointer;
-    margin-top: 10px;
 }
 
-.player button:hover {
-    background-color: #c82333;
+/* Button hover effect */
+#addPlayerForm button:hover {
+    background-color: #ff9900;
+    /* Orange color */
+    color: #000000;
+    /* Black color */
 }
