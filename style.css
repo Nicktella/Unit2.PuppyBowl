@@ -1,0 +1,90 @@
+/* styles.css */
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Header styles */
+h1 {
+    color: #333;
+}
+
+/* Form styles */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="url"],
+button {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Player styles */
+#players {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.player {
+    flex: 1 1 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.player h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.player img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+    /* Ensure images maintain aspect ratio and do not overlap */
+}
+
+.player button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.player button:hover {
+    background-color: #c82333;
+}
