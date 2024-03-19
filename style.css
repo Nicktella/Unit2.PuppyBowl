@@ -75,7 +75,6 @@ button:hover {
 
 .player {
     background-color: rgba(255, 255, 255, 0.8);
-    /* Semi-transparent background for better readability */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -84,7 +83,6 @@ button:hover {
     margin-bottom: 20px;
     transition: transform 0.3s;
     animation: slideIn 0.5s ease;
-    /* Animation for the div */
 }
 
 .player:hover {
@@ -105,7 +103,6 @@ button:hover {
     right: 0;
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.8);
-    /* Semi-transparent background for better readability */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -120,13 +117,9 @@ button:hover {
 .player h2,
 .player p {
     font-family: 'fantasy', sans-serif;
-    /* Fantasy font */
-    color: #ff9900;
-    /* Bright orange color */
+    color: #000000;
     border: 1px solid #000;
-    /* Black border */
     padding: 5px;
-    /* Add padding to make the border more visible */
 }
 
 /* Card styles */
@@ -137,9 +130,7 @@ button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     color: #333;
-    /* Set text color to black */
     animation: fadeIn 0.5s ease;
-    /* Animation for the div */
 }
 
 /* Animation keyframes */
@@ -164,51 +155,35 @@ button:hover {
         opacity: 1;
     }
 }
+
 p {
     font-family: fantasy;
     color: #000000;
-    /* Orange color */
     background-color: #ffa500;
-    /* Solid orange background */
     border: 2px solid #000000;
-    /* Black border */
     padding: 10px;
-    /* Add padding for spacing */
     border-radius: 10px;
-    /* Rounded corners */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    /* Shadow effect */
 }
 
 #players {
     font-family: fantasy;
     background-color: #ffa500;
-    /* Solid orange background */
     border: 2px solid #000000;
-    /* Black border */
     padding: 20px;
-    /* Add padding for spacing */
     border-radius: 12px;
-    /* Rounded corners */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    /* Stronger shadow effect */
-}
-#addPlayerForm {
-    background-color: #030200;
-    /* Solid orange background */
-    border: 2px solid #000000;
-    /* Black border */
-    padding: 20px;
-    /* Add padding for spacing */
-    border-radius: 12px;
-    /* Rounded corners */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    /* Stronger shadow effect */
-    animation: borderAnimation 1s infinite alternate;
-    /* Animation on border */
 }
 
-/* Animation for the border */
+#addPlayerForm {
+    background-color: #030200;
+    border: 2px solid #000000;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    animation: borderAnimation 1s infinite alternate;
+}
+
 @keyframes borderAnimation {
     0% {
         border-color: #fcd706;
@@ -216,17 +191,14 @@ p {
 
     100% {
         border-color: #ffee00;
-        /* Orange color */
     }
 }
 
-/* Label styles */
 #addPlayerForm label {
     color: #ffffff;
-    /* Orange color */
     font-weight: bold;
 }
-/* Input styles */
+
 #addPlayerForm input[type="text"],
 #addPlayerForm input[type="url"],
 #addPlayerForm button {
@@ -234,28 +206,19 @@ p {
     margin-bottom: 10px;
     width: 100%;
     border: 2px solid #000000;
-    /* Black border */
     border-radius: 4px;
     background-color: #ffffff;
-    /* Solid orange background */
     color: #ff9900;
-    /* Orange color */
 }
 
-/* Button styles */
 #addPlayerForm button {
     background-color: #000000;
-    /* Black background */
     color: #ffa500;
-    /* Orange color */
     font-weight: bold;
     cursor: pointer;
 }
 
-/* Button hover effect */
 #addPlayerForm button:hover {
     background-color: #ff9900;
-    /* Orange color */
     color: #000000;
-    /* Black color */
 }

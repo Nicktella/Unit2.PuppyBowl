@@ -1,17 +1,14 @@
-const playerContainer = document.getElementById('all-players-container');
-const newPlayerFormContainer = document.getElementById('new-player-form');
-const state = {};
-
 const cohortName = '2401-FTB-WEB-AM';
 const APIURL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}/players`;
 
 const fetchAllPlayers = async () => {
     try {
         const response = await fetch(APIURL);
-        const data = await response.json();
-        return data;
+        const { data } = await response.json();
+        return data.players; // Extracting the player list from the response data
     } catch (err) {
         console.error('Uh oh, trouble fetching players!', err);
+        return []; // Return an empty array in case of error
     }
 };
 
@@ -41,7 +38,7 @@ const addNewPlayer = async (playerObj) => {
     }
 };
 
-const removePlayer = async (playerId) => {
+const deletePlayer = async (playerId) => {
     try {
         const response = await fetch(`${APIURL}/${playerId}`, {
             method: 'DELETE',
@@ -55,24 +52,71 @@ const removePlayer = async (playerId) => {
 
 const renderAllPlayers = (playerList) => {
     try {
-        // Implement rendering logic here
         const playersDiv = document.getElementById('players');
         playersDiv.innerHTML = ''; // Clear previous content
 
         playerList.forEach(player => {
             const playerDiv = document.createElement('div');
-            playerDiv.innerHTML = `
-                <h2>${player.name}</h2>
-                <p>Breed: ${player.breed}</p>
-                <p>Status: ${player.status}</p>
-                <img src="${player.imageUrl}" alt="${player.name}">
-                <button onclick="deletePlayer(${player.id})">Delete</button>
-            `;
+            playerDiv.classList.add('player');
+
+            const playerName = document.createElement('h2');
+            playerName.textContent = player.name;
+
+            const breedParagraph = document.createElement('p');
+            breedParagraph.textContent = `Breed: ${player.breed}`;
+
+            const statusParagraph = document.createElement('p');
+            statusParagraph.textContent = `Status: ${player.status}`;
+
+            const playerImage = document.createElement('img');
+            playerImage.src = player.imageUrl;
+            playerImage.alt = player.name;
+
+            const showDetailsButton = document.createElement('button');
+            showDetailsButton.textContent = 'Show Details';
+            showDetailsButton.addEventListener('click', async () => {
+                const playerDetails = await fetchPlayerDetails(player.id);
+                renderPlayerDetails(playerDetails);
+            });
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', async () => {
+                await deletePlayer(player.id);
+                const updatedPlayers = await fetchAllPlayers();
+                renderAllPlayers(updatedPlayers); // Refresh player list after deletion
+            });
+
+            playerDiv.appendChild(playerName);
+            playerDiv.appendChild(breedParagraph);
+            playerDiv.appendChild(statusParagraph);
+            playerDiv.appendChild(playerImage);
+            playerDiv.appendChild(showDetailsButton);
+
+            const detailsContainer = document.createElement('div');
+            detailsContainer.classList.add('details-container');
+            playerDiv.appendChild(detailsContainer);
+
+            detailsContainer.appendChild(deleteButton); // Move delete button into the details container
+
             playersDiv.appendChild(playerDiv);
         });
     } catch (err) {
-        console.error('Uh oh, trouble rendering players!', err);
+        console.error('Error rendering players:', err);
     }
+};
+
+const fetchPlayerDetails = async (playerId) => {
+    try {
+        const playerDetails = await fetchSinglePlayer(playerId);
+        return playerDetails;
+    } catch (err) {
+        console.error('Error fetching player details:', err);
+    }
+};
+
+const renderPlayerDetails = (playerDetails) => {
+    // Implement rendering player details logic here
 };
 
 const renderNewPlayerForm = () => {
@@ -95,68 +139,4 @@ const init = async () => {
     }
 };
 
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        // Function to fetch and display players
-        const fetchPlayers = async () => {
-            try {
-                const response = await fetch(APIURL);
-                const { data } = await response.json();
-                renderAllPlayers(data.players);
-            } catch (error) {
-                console.error('Error fetching players:', error);
-            }
-        };
-
-        // Function to add a new player
-        const addPlayer = async (event) => {
-            event.preventDefault();
-            const form = document.getElementById('addPlayerForm');
-            const formData = new FormData(form);
-            const playerData = Object.fromEntries(formData.entries());
-
-            try {
-                const response = await fetch(APIURL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(playerData),
-                });
-                const { data } = await response.json();
-                console.log('New player added:', data.newPlayer);
-                form.reset(); // Clear form fields after successful submission
-                fetchPlayers(); // Refresh player list
-            } catch (error) {
-                console.error('Error adding player:', error);
-            }
-        };
-
-        // Function to delete a player
-        window.deletePlayer = async (playerId) => {
-            try {
-                const response = await fetch(`${APIURL}/${playerId}`, {
-                    method: 'DELETE',
-                });
-                const { success } = await response.json();
-                if (success) {
-                    console.log('Player deleted successfully');
-                    fetchPlayers(); // Refresh player list
-                } else {
-                    console.error('Failed to delete player');
-                }
-            } catch (error) {
-                console.error('Error deleting player:', error);
-            }
-        };
-
-        // Fetch and display players when the page loads
-        fetchPlayers();
-
-        // Add event listener for form submission
-        const addPlayerForm = document.getElementById('addPlayerForm');
-        addPlayerForm.addEventListener('submit', addPlayer);
-    } catch (err) {
-        console.error('Oops, something went wrong during initialization!', err);
-    }
-});
+document.addEventListener('DOMContentLoaded', init);
