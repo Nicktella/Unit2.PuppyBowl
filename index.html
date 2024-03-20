@@ -14,14 +14,25 @@
 
     <form id="addPlayerForm">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br>
+        <input type="text" id="name" name="name" required autocomplete="off"><br>
         <label for="breed">Breed:</label>
-        <input type="text" id="breed" name="breed" required><br>
+        <input type="text" id="breed" name="breed" required autocomplete="off"><br>
         <label for="imageUrl">Image URL:</label>
-        <input type="url" id="imageUrl" name="imageUrl" required><br>
+        <input type="url" id="imageUrl" name="imageUrl" required autocomplete="off"><br>
         <button type="submit">Add Player</button>
     </form>
     <div id="players"></div>
+    <div id="popup-container" class="popup-container">
+        <div id="popup-content" class="popup-content">
+            <span class="close" id="popup-close">&times;</span>
+            <h2 id="popup-name"></h2>
+            <p id="popup-breed"></p>
+            <p id="popup-status"></p>
+            <img id="popup-image" src="" alt="Player Image">
+        </div>
+    </div>
+
+
     <script src="script.js"></script>
 </body>
 

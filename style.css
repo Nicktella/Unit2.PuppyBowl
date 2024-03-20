@@ -156,6 +156,16 @@ button:hover {
     }
 }
 
+@keyframes borderAnimation {
+    0% {
+        border-color: #fcd706;
+    }
+
+    100% {
+        border-color: #ffee00;
+    }
+}
+
 p {
     font-family: fantasy;
     color: #000000;
@@ -182,16 +192,6 @@ p {
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     animation: borderAnimation 1s infinite alternate;
-}
-
-@keyframes borderAnimation {
-    0% {
-        border-color: #fcd706;
-    }
-
-    100% {
-        border-color: #ffee00;
-    }
 }
 
 #addPlayerForm label {
@@ -222,3 +222,5 @@ p {
     background-color: #ff9900;
     color: #000000;
 }
+
+/* Path: BLOCK23/Unit2.PuppyBowl/index.html */
