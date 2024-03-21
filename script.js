@@ -42,7 +42,7 @@ const renderPlayerCard = (player) => {
     const { name, breed, status, imageUrl } = player;
 
     const playerName = document.createElement('h2');
-    playerName.textContent = name;
+    playerName.textContent = player.name;
 
     const breedParagraph = document.createElement('p');
     breedParagraph.textContent = `Breed: ${breed}`;
@@ -53,6 +53,17 @@ const renderPlayerCard = (player) => {
     const playerImage = document.createElement('img');
     playerImage.src = imageUrl;
     playerImage.alt = name;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = '❌';
+    deleteButton.classList.add('delete-button');
+    deleteButton.addEventListener('click', async () => {
+        const confirmation = confirm('Are you sure you want to delete this player?');
+        if (confirmation) {
+            await deletePlayer(player.id);
+            playerDiv.remove();
+        }
+    });
 
     const showDetailsButton = document.createElement('button');
     showDetailsButton.textContent = 'Show Details';
@@ -65,7 +76,7 @@ const renderPlayerCard = (player) => {
     playerDiv.appendChild(statusParagraph);
     playerDiv.appendChild(playerImage);
     playerDiv.appendChild(showDetailsButton);
-
+    playerDiv.appendChild(deleteButton);
     return playerDiv;
 };
 
